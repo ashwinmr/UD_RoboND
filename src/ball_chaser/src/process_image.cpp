@@ -48,6 +48,7 @@ void process_image_callback(const sensor_msgs::Image img)
           else{
             loc = RIGHT;
           }
+          break;
         }
       }
     }
