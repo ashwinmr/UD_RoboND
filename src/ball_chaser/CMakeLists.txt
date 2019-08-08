@@ -114,10 +114,10 @@ catkin_package(
 
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
-# include_directories(
-#   include
-#   ${catkin_INCLUDE_DIRS}
-# )
+include_directories(
+  include
+  ${catkin_INCLUDE_DIRS}
+)
 
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}
@@ -196,8 +196,6 @@ catkin_package(
 
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
-
-include_directories(include ${catkin_INCLUDE_DIRS})
 
 add_executable(drive_bot src/drive_bot.cpp)
 target_link_libraries(drive_bot ${catkin_LIBRARIES})
