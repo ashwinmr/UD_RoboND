@@ -20,7 +20,7 @@ bool handle_drive_request(ball_chaser::DriveToTarget::Request& req, ball_chaser:
 
   // Return a response message
   res.msg_feedback = "Wheel velocity set - linear_x: " + std::to_string(req.linear_x) + " , angular_z: " + std::to_string(req.angular_z);
-  ROS_INFO_STREAM(res.msg_feedback);
+  // ROS_INFO_STREAM(res.msg_feedback);
 
   return true;
 }

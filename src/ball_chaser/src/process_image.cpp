@@ -9,7 +9,7 @@ ros::ServiceClient client;
 void drive_robot(float lin_x, float ang_z)
 {
   // TODO: Request a service and pass the velocities to it to drive the robot
-  ROS_INFO_STREAM("Driving robot");
+  // ROS_INFO_STREAM("Driving robot");
 
   // Create drive request
   ball_chaser::DriveToTarget srv;
