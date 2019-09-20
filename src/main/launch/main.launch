@@ -8,6 +8,6 @@
   <include file="$(find main)/launch/amcl.launch"/>
 
   <!-- Run rviz -->
-  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find main)/launch/amcl.rviz"/>
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find main)/launch/main.rviz"/>
 
 </launch>
