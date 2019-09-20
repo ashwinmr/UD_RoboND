@@ -4,30 +4,27 @@
 
 ros::Publisher marker_pub;
 visualization_msgs::Marker marker;
-bool reached_1 = false;
-bool reached_2 = false;
-// Set goal positions
-float pos_1_x = 0;
-float pos_1_y = -1;
-float pos_2_x = -1;
-float pos_2_y = 0;
+bool reached = false;
+// Set goal position
+float pos_x = 0;
+float pos_y = -1;
 float wnd_size = 0.1;
 
 // Callback to handle odom reading
 void odomCallback(const nav_msgs::Odometry& msg)
 {
   // Check if odometry is within 1st goal
-  if(	(msg.pose.pose.position.x > pos_1_x - wnd_size )
-     && (msg.pose.pose.position.x < pos_1_x + wnd_size )
-     && (msg.pose.pose.position.y > pos_1_y - wnd_size )
-     && (msg.pose.pose.position.y < pos_1_y + wnd_size )
-     && (!reached_1)
+  if(	(msg.pose.pose.position.x > pos_x - wnd_size )
+     && (msg.pose.pose.position.x < pos_x + wnd_size )
+     && (msg.pose.pose.position.y > pos_y - wnd_size )
+     && (msg.pose.pose.position.y < pos_y + wnd_size )
+     && (!reached)
      ){
-    reached_1 = true;
+    reached = true;
     //Update marker
     marker.header.stamp = ros::Time::now();
     marker.action = visualization_msgs::Marker::DELETE;
-    ROS_INFO("Reached goal 1");
+    ROS_INFO("Reached goal");
     marker_pub.publish(marker);
   }
 }
@@ -90,8 +87,8 @@ int main( int argc, char** argv )
   // Show marker for first position
   marker.action = visualization_msgs::Marker::ADD;
   marker.lifetime = ros::Duration();
-  marker.pose.position.x = pos_1_x;
-  marker.pose.position.y = pos_1_y;
+  marker.pose.position.x = pos_x;
+  marker.pose.position.y = pos_y;
   marker_pub.publish(marker);
   ROS_INFO("Marker ready");
 
