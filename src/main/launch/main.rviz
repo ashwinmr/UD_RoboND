@@ -3,7 +3,8 @@ Panels:
     Help Height: 138
     Name: Displays
     Property Tree Widget:
-      Expanded: ~
+      Expanded:
+        - /Global Map1/Map1
       Splitter Ratio: 0.5
     Tree Height: 1207
   - Class: rviz/Selection
@@ -106,13 +107,17 @@ Visualization Manager:
       Unreliable: false
       Value: false
       Visibility:
-        "":
+        Axes: true
+        Global Map:
           Map: true
           Path: true
           Value: true
-        Axes: true
         Grid: true
         LaserScan: true
+        Local Map:
+          Map: true
+          Path: true
+          Value: true
         Map: true
         Marker: true
         PoseArray: true
@@ -192,7 +197,7 @@ Visualization Manager:
       Value: true
     - Class: rviz/Group
       Displays:
-        - Alpha: 0.10000000149011612
+        - Alpha: 0.30000001192092896
           Class: rviz/Map
           Color Scheme: costmap
           Draw Behind: false
