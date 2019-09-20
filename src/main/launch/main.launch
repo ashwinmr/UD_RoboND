@@ -6,6 +6,7 @@
   <include file="$(find my_robot)/launch/world.launch"/>
   <!-- <include file="$(find ball_chaser)/launch/ball_chaser.launch"/> -->
   <include file="$(find main)/launch/amcl.launch"/>
+  <node name="add_markers" pkg="add_markers" type="add_markers"/>
 
   <!-- Run rviz -->
   <node name="rviz" pkg="rviz" type="rviz" args="-d $(find main)/launch/main.rviz"/>

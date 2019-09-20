@@ -16,8 +16,6 @@ float wnd_size = 0.1;
 // Callback to handle odom reading
 void odomCallback(const nav_msgs::Odometry& msg)
 {
-  ROS_INFO("x: [%f], y: [%f]",msg.pose.pose.position.x,msg.pose.pose.position.y);
-  
   // Check if odometry is within 1st goal
   if(	(msg.pose.pose.position.x > pos_1_x - wnd_size )
      && (msg.pose.pose.position.x < pos_1_x + wnd_size )
@@ -32,23 +30,6 @@ void odomCallback(const nav_msgs::Odometry& msg)
     ROS_INFO("Reached goal 1");
     marker_pub.publish(marker);
   }
-  
-  // Check if odometry is within 2nd goal
-  if(	(msg.pose.pose.position.x > pos_2_x - wnd_size )
-     && (msg.pose.pose.position.x < pos_2_x + wnd_size )
-     && (msg.pose.pose.position.y > pos_2_y - wnd_size )
-     && (msg.pose.pose.position.y < pos_2_y + wnd_size )
-     && (!reached_2)
-     ){
-    reached_2 = true;
-    //Update marker
-    marker.header.stamp = ros::Time::now();
-    marker.action = visualization_msgs::Marker::ADD;
-    marker.pose.position.x = msg.pose.pose.position.x;
-  	marker.pose.position.y = msg.pose.pose.position.y;
-    ROS_INFO("Reached goal 2");
-    marker_pub.publish(marker);
-  }
 }
 
 int main( int argc, char** argv )
@@ -56,7 +37,7 @@ int main( int argc, char** argv )
   ros::init(argc, argv, "add_markers");
   ros::NodeHandle n;
   marker_pub = n.advertise<visualization_msgs::Marker>("visualization_marker", 1);
-  ros::Subscriber odom_sub = n.subscribe("odom", 10, odomCallback);
+  ros::Subscriber odom_sub = n.subscribe("odom", 1, odomCallback);
 
   // Set our initial shape type to be a cube
   uint32_t shape = visualization_msgs::Marker::CUBE;
@@ -69,7 +50,7 @@ int main( int argc, char** argv )
   
   // Set the namespace and id for this marker.  This serves to create a unique ID
   // Any marker sent with the same namespace and id will overwrite the old one
-  marker.ns = "basic_shapes";
+  marker.ns = "basic_marker";
   marker.id = 0;
 
   // Set the marker type.  Initially this is CUBE, and cycles between that and SPHERE, ARROW, and CYLINDER
