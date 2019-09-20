@@ -76,7 +76,6 @@ void process_image_callback(const sensor_msgs::Image img)
         drive_robot(lin_x, 0);
         break;
       case NONE:
-        drive_robot(0,0);
         break;
       default:
         break;
